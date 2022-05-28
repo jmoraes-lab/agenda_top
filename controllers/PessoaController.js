@@ -45,6 +45,14 @@ class PessoaController {
 
         res.redirect('/pessoa')
     }
+
+    static async destroy(req, res) {
+        const pessoa = await Pessoa.findByPk(req.params.id)
+        await pessoa.destroy()
+
+        res.redirect('/pessoa')
+    }
+
 }
 
 module.exports = PessoaController
