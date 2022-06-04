@@ -9,7 +9,12 @@ require('dotenv').config()
 app.use(express.urlencoded({ extended: true })) // Aceita requisições do tipo url-encoded, ou seja, requisições de formulários e etc.
 app.use(express.json()) // Aceita JSON como requisição (importante para APIs)
 
-app.engine('handlebars',engine())
+app.engine('handlebars', engine({
+    runtimeOptions: {
+        allowProtoPropertiesByDefault: true,
+        allowProtoMethodsByDefault: true,
+    },
+}))
 app.set('view engine','handlebars')
 
 app.use('/',routes)

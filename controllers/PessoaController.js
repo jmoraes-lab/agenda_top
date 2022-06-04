@@ -1,7 +1,7 @@
 const { Pessoa } = require ('../models')
 class PessoaController {
     static async index(req, res) {
-        const pessoas = await Pessoa.findAll({ raw: true })
+        const pessoas = await Pessoa.findAll()
         res.render('pessoa/index', {
             pessoas: pessoas
         })
@@ -27,8 +27,8 @@ class PessoaController {
     
 
     static async edit(req, res) {
-        const pessoa = await Pessoa.findByPk(req.params.id, { raw: true })
-
+        //const pessoa = await Pessoa.findByPk(req.params.id, { raw: true })
+        const pessoa = await Pessoa.findByPk(req.params.id)
         res.render('pessoa/edit', {
             pessoa: pessoa
         })
