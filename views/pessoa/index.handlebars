@@ -4,6 +4,12 @@
     <a class="btn btn-primary" href="/pessoa/create">Criar Pessoas</a>
 </div>
 
+{{# if messages.success }}
+<div class="alert alert-success mt-3">
+    {{ messages.success }}
+</div>
+{{/ if}}
+
 <div class="mt-5">
     <table class="table table-stripped">
         <tr>

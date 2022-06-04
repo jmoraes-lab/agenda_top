@@ -22,7 +22,12 @@ class PessoaController {
             data_nascimento: data_nascimento,
             salario:salario
         })
-        res.redirect('/pessoa')
+        
+        req.flash('success', 'Registro criado com sucesso!')
+        req.session.save(() => {
+            res.redirect('/pessoa')
+        })
+        
     }
     
 
@@ -35,23 +40,32 @@ class PessoaController {
     }
 
     static async update(req, res) {
-        const pessoa = await Pessoa.findByPk(req.params.id)
-        await pessoa.update({
-            nome: req.body.nome,
-            email: req.body.email,
-            data_nascimento: req.body.data_nascimento.split('/').reverse().join('-'), //mudando para padrao americano 2000-00-00
-            salario: req.body.salario.replace('.', '').replace(',', '.')    // retirando o ponto 
-            
-        })
+        try {
+            const pessoa = await Pessoa.findByPk(req.params.id)
+            await pessoa.update({
+                nome: req.body.nome,
+                email: req.body.email,
+                data_nascimento: req.body.data_nascimento,
+                salario: req.body.salario
+            })
 
-        res.redirect('/pessoa')
+            req.flash('success', 'Registro atualizado com sucesso!')
+            req.session.save(() => {
+                res.redirect('/pessoa')
+            })
+        } catch (e) {
+            console.log(e)
+        }
     }
 
     static async destroy(req, res) {
         const pessoa = await Pessoa.findByPk(req.params.id)
         await pessoa.destroy()
 
-        res.redirect('/pessoa')
+        req.flash('success', 'Registro excluido com sucesso!')
+            req.session.save(() => {
+                res.redirect('/pessoa')
+        })
     }
 
 }
