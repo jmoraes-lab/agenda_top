@@ -19,8 +19,8 @@ class PessoaController {
         await Pessoa.create({
             nome: nome,
             email: email,
-            data_nascimento: data_nascimento.split('/').reverse().join('-'),
-            salario:salario.replace('.', '').replace(',', '.')
+            data_nascimento: data_nascimento,
+            salario:salario
         })
         res.redirect('/pessoa')
     }
