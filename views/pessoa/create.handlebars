@@ -25,3 +25,15 @@
         <button class="btn btn-success">Salvar</button>
     </form>
 </div>
+
+{{#section 'scripts'}}
+    <script>
+        $('#data_nascimento').datepicker({
+            language: "pt-BR"
+        });
+        $(document).ready(function(){
+            $('#data_nascimento').mask('00/00/0000');
+            $('#salario').mask("#.##0,00", {reverse: true});
+        })
+    </script>
+{{/section}}

@@ -5,6 +5,7 @@ const routes = require ('./routes')
 const flash = require("express-flash")
 const session = require("express-session")
 const FileStore = require("session-file-store")(session)
+const helpers = require('./helpers/handlebars')
 
 require('dotenv').config()
 
@@ -13,6 +14,7 @@ app.use(express.urlencoded({ extended: true })) // Aceita requisições do tipo 
 app.use(express.json()) // Aceita JSON como requisição (importante para APIs)
 
 app.engine('handlebars', engine({
+    helpers: helpers,
     runtimeOptions: {
         allowProtoPropertiesByDefault: true,
         allowProtoMethodsByDefault: true,

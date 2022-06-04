@@ -25,3 +25,11 @@
         <button class="btn btn-success">Salvar</button>
     </form>
 </div>
+
+<div class="mt-5">
+    {{#each pessoa.telefones }}
+        <div>
+            {{ this.numero }}
+        </div>
+    {{/each}}
+</div>

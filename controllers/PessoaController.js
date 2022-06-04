@@ -32,8 +32,7 @@ class PessoaController {
     
 
     static async edit(req, res) {
-        //const pessoa = await Pessoa.findByPk(req.params.id, { raw: true })
-        const pessoa = await Pessoa.findByPk(req.params.id)
+        const pessoa = await Pessoa.findByPk(req.params.id, {include: 'telefones'}) //referencia a tabela filha 
         res.render('pessoa/edit', {
             pessoa: pessoa
         })
