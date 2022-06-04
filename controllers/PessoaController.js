@@ -19,8 +19,8 @@ class PessoaController {
         await Pessoa.create({
             nome: nome,
             email: email,
-            data_nascimento: data_nascimento,
-            salario:salario
+            data_nascimento: data_nascimento.split('/').reverse().join('-'),
+            salario:salario.replace('.', '').replace(',', '.')
         })
         res.redirect('/pessoa')
     }
@@ -39,8 +39,9 @@ class PessoaController {
         await pessoa.update({
             nome: req.body.nome,
             email: req.body.email,
-            data_nascimento: req.body.data_nascimento,
-            salario: req.body.salario
+            data_nascimento: req.body.data_nascimento.split('/').reverse().join('-'), //mudando para padrao americano 2000-00-00
+            salario: req.body.salario.replace('.', '').replace(',', '.')    // retirando o ponto 
+            
         })
 
         res.redirect('/pessoa')
